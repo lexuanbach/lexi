@@ -1,0 +1,209 @@
+{
+  "nominal": {
+    "table": {
+      "Lexi-strict": {
+        "slo": 1.4583,
+        "privacy": 0.0543,
+        "carbon": 0.9826,
+        "cost": 3.2087,
+        "churn": 1.3455
+      },
+      "constrained_rl": {
+        "slo": 1.3167,
+        "privacy": 0.0543,
+        "carbon": 0.984,
+        "cost": 3.1935,
+        "churn": 1.3158
+      },
+      "ws_tuned": {
+        "slo": 3.1917,
+        "privacy": 0.0133,
+        "carbon": 0.9854,
+        "cost": 3.2023,
+        "churn": 1.2842
+      },
+      "Lexi-margin(0)": {
+        "slo": 1.45,
+        "privacy": 0.0543,
+        "carbon": 0.9828,
+        "cost": 3.2106,
+        "churn": 1.3447
+      },
+      "Lexi-margin(4)": {
+        "slo": 0.1583,
+        "privacy": 0.1135,
+        "carbon": 1.0192,
+        "cost": 3.2316,
+        "churn": 1.4857
+      },
+      "Lexi-margin(8)": {
+        "slo": 0.0083,
+        "privacy": 0.278,
+        "carbon": 1.0465,
+        "cost": 3.1875,
+        "churn": 1.6573
+      },
+      "Lexi-margin(12)": {
+        "slo": 0.0083,
+        "privacy": 0.5762,
+        "carbon": 1.0576,
+        "cost": 3.0543,
+        "churn": 1.7512
+      }
+    },
+    "best_margin": "Lexi-margin(8)",
+    "sig": {
+      "Lexi-margin(8)_vs_constrained_rl_slo": {
+        "p": 0.0,
+        "median_diff": -1.375
+      },
+      "Lexi-margin(8)_vs_Lexi-strict_slo": {
+        "p": 0.0,
+        "median_diff": -1.5
+      }
+    }
+  },
+  "cold": {
+    "table": {
+      "Lexi-strict": {
+        "slo": 34.8333,
+        "privacy": 0.0973,
+        "carbon": 1.6872,
+        "cost": 5.4525,
+        "churn": 1.6145
+      },
+      "constrained_rl": {
+        "slo": 34.7,
+        "privacy": 0.0973,
+        "carbon": 1.6893,
+        "cost": 5.4281,
+        "churn": 1.5802
+      },
+      "ws_tuned": {
+        "slo": 37.3917,
+        "privacy": 0.0283,
+        "carbon": 1.7585,
+        "cost": 4.9941,
+        "churn": 1.5615
+      },
+      "Lexi-margin(0)": {
+        "slo": 34.8333,
+        "privacy": 0.0973,
+        "carbon": 1.6871,
+        "cost": 5.4531,
+        "churn": 1.6172
+      },
+      "Lexi-margin(4)": {
+        "slo": 33.8917,
+        "privacy": 0.172,
+        "carbon": 1.6884,
+        "cost": 5.3782,
+        "churn": 1.6489
+      },
+      "Lexi-margin(8)": {
+        "slo": 34.35,
+        "privacy": 0.16,
+        "carbon": 1.6946,
+        "cost": 5.3589,
+        "churn": 1.6636
+      },
+      "Lexi-margin(12)": {
+        "slo": 34.3667,
+        "privacy": 0.2062,
+        "carbon": 1.7007,
+        "cost": 5.3021,
+        "churn": 1.6758
+      }
+    },
+    "best_margin": "Lexi-margin(4)",
+    "sig": {
+      "Lexi-margin(4)_vs_constrained_rl_slo": {
+        "p": 0.0,
+        "median_diff": -0.875
+      },
+      "Lexi-margin(4)_vs_Lexi-strict_slo": {
+        "p": 0.0,
+        "median_diff": -0.875
+      }
+    }
+  },
+  "contention": {
+    "table": {
+      "Lexi-strict": {
+        "slo": 21.5667,
+        "privacy": 1.0728,
+        "carbon": 1.2031,
+        "cost": 3.0374,
+        "churn": 1.4989
+      },
+      "constrained_rl": {
+        "slo": 20.9667,
+        "privacy": 1.0948,
+        "carbon": 1.1976,
+        "cost": 2.9953,
+        "churn": 1.443
+      },
+      "ws_tuned": {
+        "slo": 26.2917,
+        "privacy": 0.8958,
+        "carbon": 1.2134,
+        "cost": 3.0904,
+        "churn": 1.445
+      },
+      "Lexi-margin(0)": {
+        "slo": 18.6583,
+        "privacy": 1.059,
+        "carbon": 1.2069,
+        "cost": 3.0931,
+        "churn": 1.4917
+      },
+      "Lexi-margin(4)": {
+        "slo": 16.1667,
+        "privacy": 1.194,
+        "carbon": 1.2106,
+        "cost": 3.0524,
+        "churn": 1.4733
+      },
+      "Lexi-margin(8)": {
+        "slo": 15.275,
+        "privacy": 1.3167,
+        "carbon": 1.2187,
+        "cost": 3.0233,
+        "churn": 1.4652
+      },
+      "Lexi-margin(12)": {
+        "slo": 14.6,
+        "privacy": 1.4413,
+        "carbon": 1.2276,
+        "cost": 2.9957,
+        "churn": 1.4856
+      }
+    },
+    "best_margin": "Lexi-margin(12)",
+    "sig": {
+      "Lexi-margin(12)_vs_constrained_rl_slo": {
+        "p": 0.0,
+        "median_diff": -6.5
+      },
+      "Lexi-margin(12)_vs_Lexi-strict_slo": {
+        "p": 0.0,
+        "median_diff": -6.875
+      }
+    }
+  },
+  "inversion": {
+    "inversion_pct": {
+      "Lexi-strict": 0.0,
+      "constrained_rl": 0.683,
+      "ws_tuned": 3.65,
+      "Lexi-margin(8)": 26.358
+    },
+    "conflict_step_pct": 83.008,
+    "conflict_keeps_private_pct": {
+      "Lexi-strict": 100.0,
+      "constrained_rl": 100.0,
+      "ws_tuned": 100.0,
+      "Lexi-margin(8)": 87.24
+    }
+  }
+}

@@ -1,0 +1,15 @@
+# Pinned environment used to test this artifact (Python 3.13.5 and 3.14.6, macOS 26, arm64).
+# With these versions every result file regenerates byte for byte and Fig. 2 renders
+# pixel-identical to the figure in both papers. lexi/requirements.txt gives the looser
+# minimum versions of the code base.
+numpy==2.4.6
+matplotlib==3.10.9
+contourpy==1.4.0
+cycler==0.12.1
+fonttools==4.66.0
+kiwisolver==1.5.1
+packaging==26.3
+pillow==12.3.0
+pyparsing==3.3.3
+python-dateutil==2.9.0.post0
+six==1.17.0

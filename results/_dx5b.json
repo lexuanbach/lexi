@@ -1,0 +1,41 @@
+{
+  "n_seeds": 15,
+  "rows": [
+    {
+      "contention": 0.4,
+      "additive": {
+        "resid": 3.063,
+        "slo": 21.567,
+        "pii": 1.073,
+        "carbon": 1.203,
+        "cost": 3.037
+      },
+      "aware": {
+        "resid": 16.574,
+        "slo": 19.133,
+        "pii": 1.904,
+        "carbon": 1.305,
+        "cost": 2.919
+      }
+    },
+    {
+      "contention": 0.6,
+      "additive": {
+        "resid": 2.229,
+        "slo": 40.967,
+        "pii": 1.491,
+        "carbon": 1.247,
+        "cost": 2.96
+      },
+      "aware": {
+        "resid": 25.14,
+        "slo": 40.158,
+        "pii": 1.812,
+        "carbon": 1.312,
+        "cost": 2.955
+      }
+    }
+  ],
+  "model": "M/G/1-flavoured per-stage correction c*q_n*(coloc-1) on the critical path; single c fit online by ridge on the residual latency",
+  "note": "resid = mean |realised - model critical-path latency| (ms) on executed placements; PII/carbon/cost show the lower-priority impact of contention"
+}

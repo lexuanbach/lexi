@@ -1,0 +1,9 @@
+# Lexi artifact dependencies (pure CPU; no GPU, no network, no LLM).
+# Determinism is via a seeded numpy RNG (numpy.random.default_rng); the
+# statistics (bootstrap CIs, paired bootstrap p-values) are implemented in-repo
+# and need no scipy.
+#
+#   pip install -r requirements.txt
+#
+numpy>=1.21          # simulator, controller, causal model, all experiments
+matplotlib>=3.4      # only make_real_figures.py (regenerates fig_thesis.pdf)

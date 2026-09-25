@@ -1,0 +1,44 @@
+{
+  "n_seeds": 15,
+  "strict": {
+    "coverage_pct": 85.71,
+    "coverage_ci": [
+      85.71,
+      85.71
+    ],
+    "model_lat_err_ms": 1.386,
+    "err_ci": [
+      1.364,
+      1.407
+    ],
+    "slo": 1.458,
+    "slo_ci": [
+      1.308,
+      1.6
+    ],
+    "pii": 0.0543
+  },
+  "safeprobe": {
+    "coverage_pct": 100.0,
+    "coverage_ci": [
+      100.0,
+      100.0
+    ],
+    "model_lat_err_ms": 1.382,
+    "err_ci": [
+      1.36,
+      1.403
+    ],
+    "slo": 1.3,
+    "slo_ci": [
+      1.142,
+      1.467
+    ],
+    "pii": 0.054
+  },
+  "sig_slo_safe_minus_strict": {
+    "p": 0.0,
+    "median_diff": -0.125
+  },
+  "note": "LCB-gated probe explores only SLO-feasible, PII-nonworsening candidates; coverage = %% of nodes visited >= 2%% of horizon; SLO must not worsen"
+}

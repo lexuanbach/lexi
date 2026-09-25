@@ -1,0 +1,502 @@
+{
+  "rx1_contention": {
+    "n_seeds": 15,
+    "rows": [
+      {
+        "contention": 0.0,
+        "additive_slo": 1.458,
+        "aware_slo": 1.458,
+        "additive_pii": 0.054,
+        "aware_pii": 0.054,
+        "recovery_frac": 0.0
+      },
+      {
+        "contention": 0.1,
+        "additive_slo": 5.792,
+        "aware_slo": 3.308,
+        "additive_pii": 0.18,
+        "aware_pii": 1.313,
+        "recovery_frac": 0.573
+      },
+      {
+        "contention": 0.2,
+        "additive_slo": 9.5,
+        "aware_slo": 7.942,
+        "additive_pii": 0.648,
+        "aware_pii": 1.464,
+        "recovery_frac": 0.194
+      },
+      {
+        "contention": 0.4,
+        "additive_slo": 21.567,
+        "aware_slo": 19.133,
+        "additive_pii": 1.073,
+        "aware_pii": 1.905,
+        "recovery_frac": 0.121
+      },
+      {
+        "contention": 0.6,
+        "additive_slo": 40.967,
+        "aware_slo": 40.158,
+        "additive_pii": 1.491,
+        "aware_pii": 1.812,
+        "recovery_frac": 0.02
+      }
+    ],
+    "note": "M/G/1-flavoured online contention term; recovery_frac = share of contention-induced SLO degradation recovered vs the additive model (seed-weighted over shards)"
+  },
+  "rx2_doubly_robust": {
+    "n_seeds": 15,
+    "rows": [
+      {
+        "epsilon": 0.0,
+        "dm_esterr": 0.0246,
+        "dr_esterr": 0.0246,
+        "dm_slo": 1.4584,
+        "dr_slo": 1.4584,
+        "dm_pii": 0.0544,
+        "dr_pii": 0.0544,
+        "esterr_reduction_pct": 0.0
+      },
+      {
+        "epsilon": 0.1,
+        "dm_esterr": 0.0172,
+        "dr_esterr": 0.0172,
+        "dm_slo": 2.3418,
+        "dr_slo": 2.3418,
+        "dm_pii": 0.6288,
+        "dr_pii": 0.6288,
+        "esterr_reduction_pct": 0.12
+      },
+      {
+        "epsilon": 0.2,
+        "dm_esterr": 0.0339,
+        "dr_esterr": 0.0338,
+        "dm_slo": 3.7668,
+        "dr_slo": 3.7668,
+        "dm_pii": 0.6174,
+        "dr_pii": 0.6174,
+        "esterr_reduction_pct": 0.35
+      },
+      {
+        "epsilon": 0.3,
+        "dm_esterr": 0.0506,
+        "dr_esterr": 0.0504,
+        "dm_slo": 5.2416,
+        "dr_slo": 5.2416,
+        "dm_pii": 0.6032,
+        "dr_pii": 0.6032,
+        "esterr_reduction_pct": 0.39
+      },
+      {
+        "epsilon": 0.4,
+        "dm_esterr": 0.0674,
+        "dr_esterr": 0.067,
+        "dm_slo": 6.5168,
+        "dr_slo": 6.5168,
+        "dm_pii": 0.5914,
+        "dr_pii": 0.5914,
+        "esterr_reduction_pct": 0.53
+      }
+    ],
+    "note": "DR (carbon-only, evidence-gated residual, Dudik et al.) vs direct method; esterr = mean |hat g - g| on SLO-hinge+carbon over candidates; DR is decision-safe (SLO/PII == DM) and the additive DM is already well-specified for the priority-driving objectives (seed-weighted)"
+  },
+  "rx7_compliance": {
+    "n_seeds": 15,
+    "rows": [
+      {
+        "filter": false,
+        "slo": 1.458,
+        "residency_violation_pct": 2.717,
+        "pii_exposure": 0.054
+      },
+      {
+        "filter": true,
+        "slo": 3.725,
+        "residency_violation_pct": 0.0,
+        "pii_exposure": 0.0
+      }
+    ],
+    "note": "hard residency/jurisdiction pre-filter removes inadmissible placements before Lexi ranks survivors; order + scale-invariance unchanged"
+  },
+  "rx6_priority_orders": {
+    "n_seeds": 15,
+    "static_orders": [
+      {
+        "order": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "label": "SLO>-priv>-carbon>-cost (default)",
+        "slo": 1.458,
+        "privacy": 0.054,
+        "carbon": 0.983,
+        "cost": 3.209
+      },
+      {
+        "order": [
+          1,
+          0,
+          2,
+          3
+        ],
+        "label": "priv>-SLO>-carbon>-cost",
+        "slo": 3.725,
+        "privacy": 0.0,
+        "carbon": 0.992,
+        "cost": 3.257
+      },
+      {
+        "order": [
+          2,
+          0,
+          1,
+          3
+        ],
+        "label": "carbon>-SLO>-priv>-cost",
+        "slo": 67.792,
+        "privacy": 2.0,
+        "carbon": 0.355,
+        "cost": 1.08
+      },
+      {
+        "order": [
+          0,
+          2,
+          1,
+          3
+        ],
+        "label": "SLO>-carbon>-priv>-cost",
+        "slo": 0.883,
+        "privacy": 1.626,
+        "carbon": 0.736,
+        "cost": 1.782
+      }
+    ],
+    "dynamic_switch": {
+      "before_switch_SLOfirst": {
+        "slo": 1.6,
+        "privacy": 0.029
+      },
+      "after_switch_privfirst": {
+        "slo": 3.567,
+        "privacy": 0.0
+      }
+    },
+    "note": "order is a constructor/set_order argument; the counterfactual model is order-agnostic so reordering needs no retraining and takes effect at once"
+  },
+  "rx5_scaling": {
+    "n_seeds": 5,
+    "by_K": [
+      {
+        "K": 6,
+        "M": 9,
+        "C": 250,
+        "act_ms_median": 0.1328,
+        "update_ms_median": 0.0319,
+        "slo": 11.4,
+        "pii": 0.666
+      },
+      {
+        "K": 12,
+        "M": 9,
+        "C": 250,
+        "act_ms_median": 0.1836,
+        "update_ms_median": 0.06,
+        "slo": 3.9,
+        "pii": 1.314
+      },
+      {
+        "K": 20,
+        "M": 10,
+        "C": 250,
+        "act_ms_median": 0.2488,
+        "update_ms_median": 0.0978,
+        "slo": 3.5,
+        "pii": 1.838
+      },
+      {
+        "K": 30,
+        "M": 15,
+        "C": 250,
+        "act_ms_median": 0.3631,
+        "update_ms_median": 0.1476,
+        "slo": 2.0,
+        "pii": 3.968
+      }
+    ],
+    "by_C": [
+      {
+        "C": 40,
+        "act_ms_median": 0.2084,
+        "update_ms_median": 0.0985
+      },
+      {
+        "C": 250,
+        "act_ms_median": 0.2638,
+        "update_ms_median": 0.0992
+      },
+      {
+        "C": 1000,
+        "act_ms_median": 0.4732,
+        "update_ms_median": 0.0989
+      },
+      {
+        "C": 2000,
+        "act_ms_median": 0.7467,
+        "update_ms_median": 0.0982
+      }
+    ],
+    "note": "wall-clock per decision (act) and per off-policy update; update cost is O(K) (per-node estimators only), independent of C -- no update bottleneck"
+  },
+  "rx4_hinge_margin": {
+    "n_seeds": 15,
+    "hinge_scale_invariance": [
+      {
+        "rho": 30.0,
+        "slo": 1.458,
+        "privacy": 0.054
+      },
+      {
+        "rho": 60.0,
+        "slo": 1.458,
+        "privacy": 0.054
+      },
+      {
+        "rho": 120.0,
+        "slo": 1.458,
+        "privacy": 0.054
+      },
+      {
+        "rho": 240.0,
+        "slo": 1.458,
+        "privacy": 0.054
+      }
+    ],
+    "manual_margin": [
+      {
+        "margin_ms": 0.0,
+        "slo": 1.45,
+        "privacy": 0.054
+      },
+      {
+        "margin_ms": 2.0,
+        "slo": 0.425,
+        "privacy": 0.077
+      },
+      {
+        "margin_ms": 4.0,
+        "slo": 0.158,
+        "privacy": 0.113
+      },
+      {
+        "margin_ms": 8.0,
+        "slo": 0.008,
+        "privacy": 0.278
+      },
+      {
+        "margin_ms": 12.0,
+        "slo": 0.008,
+        "privacy": 0.576
+      }
+    ],
+    "auto_margin": [
+      {
+        "k": 1.0,
+        "slo": 0.458,
+        "privacy": 0.072,
+        "mean_delta_ms": 1.86
+      },
+      {
+        "k": 2.0,
+        "slo": 0.225,
+        "privacy": 0.101,
+        "mean_delta_ms": 3.7
+      },
+      {
+        "k": 3.0,
+        "slo": 0.108,
+        "privacy": 0.139,
+        "mean_delta_ms": 5.52
+      }
+    ],
+    "note": "hinge rho is a monotone reparam of obj 0 => strict Lexi physically invariant; auto delta = k*std(latency residual), self-calibrating, no units (seed-weighted)"
+  },
+  "rx3_expanded_sweeps": {
+    "n_seeds_sweep": 2,
+    "n_seeds_baseline": 3,
+    "weight_sweep": {
+      "n_weights": 220,
+      "n_grid_total": 220,
+      "frac_meeting_target": 0.1455,
+      "frac_dominating_lexi": 0.0,
+      "best_ws": {
+        "w": [
+          0.85,
+          0.05,
+          0.05,
+          0.05
+        ],
+        "slo": 3.56,
+        "privacy": 0.036
+      },
+      "lexi": {
+        "slo": 1.67,
+        "privacy": 0.044
+      }
+    },
+    "constrained_rl_sweep": {
+      "grid": [
+        {
+          "tol": 0.0,
+          "w_priv": 0.34,
+          "slo": 1.5,
+          "privacy": 0.044
+        },
+        {
+          "tol": 0.0,
+          "w_priv": 0.6,
+          "slo": 1.5,
+          "privacy": 0.044
+        },
+        {
+          "tol": 0.0,
+          "w_priv": 0.8,
+          "slo": 1.5,
+          "privacy": 0.044
+        },
+        {
+          "tol": 0.02,
+          "w_priv": 0.34,
+          "slo": 3.08,
+          "privacy": 0.036
+        },
+        {
+          "tol": 0.02,
+          "w_priv": 0.6,
+          "slo": 3.08,
+          "privacy": 0.036
+        },
+        {
+          "tol": 0.02,
+          "w_priv": 0.8,
+          "slo": 3.08,
+          "privacy": 0.036
+        },
+        {
+          "tol": 0.05,
+          "w_priv": 0.34,
+          "slo": 5.62,
+          "privacy": 0.03
+        },
+        {
+          "tol": 0.05,
+          "w_priv": 0.6,
+          "slo": 5.62,
+          "privacy": 0.03
+        },
+        {
+          "tol": 0.05,
+          "w_priv": 0.8,
+          "slo": 5.62,
+          "privacy": 0.03
+        },
+        {
+          "tol": 0.1,
+          "w_priv": 0.34,
+          "slo": 10.04,
+          "privacy": 0.017
+        },
+        {
+          "tol": 0.1,
+          "w_priv": 0.6,
+          "slo": 10.04,
+          "privacy": 0.017
+        },
+        {
+          "tol": 0.1,
+          "w_priv": 0.8,
+          "slo": 10.04,
+          "privacy": 0.017
+        }
+      ],
+      "best": {
+        "tol": 0.0,
+        "w_priv": 0.34,
+        "slo": 1.5,
+        "privacy": 0.044
+      }
+    },
+    "tchebycheff_sweep": {
+      "grid": [
+        {
+          "rho": 0.0001,
+          "w_priv": 0.1,
+          "slo": 5.0,
+          "privacy": 0.011
+        },
+        {
+          "rho": 0.0001,
+          "w_priv": 0.4,
+          "slo": 5.5,
+          "privacy": 0.0
+        },
+        {
+          "rho": 0.0001,
+          "w_priv": 0.7,
+          "slo": 5.5,
+          "privacy": 0.0
+        },
+        {
+          "rho": 0.001,
+          "w_priv": 0.1,
+          "slo": 5.0,
+          "privacy": 0.011
+        },
+        {
+          "rho": 0.001,
+          "w_priv": 0.4,
+          "slo": 5.5,
+          "privacy": 0.0
+        },
+        {
+          "rho": 0.001,
+          "w_priv": 0.7,
+          "slo": 5.5,
+          "privacy": 0.0
+        },
+        {
+          "rho": 0.01,
+          "w_priv": 0.1,
+          "slo": 5.0,
+          "privacy": 0.011
+        },
+        {
+          "rho": 0.01,
+          "w_priv": 0.4,
+          "slo": 5.5,
+          "privacy": 0.0
+        },
+        {
+          "rho": 0.01,
+          "w_priv": 0.7,
+          "slo": 5.5,
+          "privacy": 0.0
+        }
+      ],
+      "best": {
+        "rho": 0.0001,
+        "w_priv": 0.1,
+        "slo": 5.0,
+        "privacy": 0.011
+      }
+    },
+    "note": "finer simplex (step 0.05, SLO-weight>=0.4 region, >84 vectors) + baseline hyperparameter sweeps; best-case baselines still price the objectives"
+  },
+  "_meta": {
+    "n_seeds": 15,
+    "note": "robustness experiments RX1 to RX7, merged from shards by run_incremental.py"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "scale_invariance": [
+    {
+      "eta_priv": 0.0,
+      "priv_scale": 1.0,
+      "pii": 0.1135
+    },
+    {
+      "eta_priv": 0.0,
+      "priv_scale": 10.0,
+      "pii": 0.1135
+    },
+    {
+      "eta_priv": 0.5,
+      "priv_scale": 1.0,
+      "pii": 0.121
+    },
+    {
+      "eta_priv": 0.5,
+      "priv_scale": 10.0,
+      "pii": 0.1135
+    }
+  ]
+}

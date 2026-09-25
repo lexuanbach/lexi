@@ -1,0 +1,57 @@
+{
+  "n_seeds": 15,
+  "rows": [
+    {
+      "drift": 0.0,
+      "static_slo": 1.467,
+      "static_slo_ci": [
+        1.308,
+        1.625
+      ],
+      "online_slo": 1.458,
+      "online_slo_ci": [
+        1.308,
+        1.6
+      ],
+      "static_carbon": 0.983,
+      "online_carbon": 0.983
+    },
+    {
+      "drift": 0.3,
+      "static_slo": 16.883,
+      "static_slo_ci": [
+        16.208,
+        17.733
+      ],
+      "online_slo": 16.242,
+      "online_slo_ci": [
+        15.825,
+        16.684
+      ],
+      "static_carbon": 1.029,
+      "online_carbon": 1.0
+    },
+    {
+      "drift": 0.6,
+      "static_slo": 37.192,
+      "static_slo_ci": [
+        36.608,
+        37.767
+      ],
+      "online_slo": 28.917,
+      "online_slo_ci": [
+        28.442,
+        29.4
+      ],
+      "static_carbon": 1.121,
+      "online_carbon": 1.04
+    }
+  ],
+  "sig_online_vs_static_at_max_drift": {
+    "drift": 0.6,
+    "p": 0.0,
+    "median_diff": -8.5
+  },
+  "features": "per-node ridge on [1, demand, load, same_region] (latency) and [1, sin t, cos t] (carbon); ridge lambda=1e-2; update EVERY request",
+  "note": "static model frozen after warmup; online model keeps updating -> tracks RTT/carbon drift"
+}

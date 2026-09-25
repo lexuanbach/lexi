@@ -1,0 +1,21 @@
+cff-version: 1.2.0
+message: "If you use this artifact, please cite the associated ICSOC 2026 paper."
+title: "Artifact for 'Lexi: Priority-First Service Orchestration'"
+type: software
+authors:
+  - given-names: "Xuan-Bach"
+    family-names: "Le"
+    orcid: "https://orcid.org/0009-0003-6848-5403"
+  - given-names: "Phat T."
+    family-names: "Tran-Truong"
+    orcid: "https://orcid.org/0000-0003-3199-6333"
+  - given-names: "Duy"
+    family-names: "Nguyen"
+    orcid: "https://orcid.org/0009-0000-6348-8830"
+  - given-names: "Ngoc Khanh Tran"
+    family-names: "Nguyen"
+    orcid: "https://orcid.org/0009-0000-0965-4869"
+version: "icsoc2026-final"
+date-released: "2026-09-24"
+repository-code: "https://github.com/lexuanbach/lexi"
+license: "Apache-2.0"

@@ -1,0 +1,8 @@
+# License scope
+
+Unless a file says otherwise:
+
+- Original source code, scripts, manifests, and configuration files are licensed under the Apache License 2.0. The license text is in `LICENSES/Apache-2.0.txt`.
+- Original documentation, fixtures, and processed data are licensed under Creative Commons Attribution 4.0 International. See `LICENSES/CC-BY-4.0.txt`.
+- The two PDFs in `paper/` retain their publication and author agreements; this artifact does not relicense them.
+- Third-party inputs and dependencies retain their own terms. See `THIRD_PARTY_NOTICES.md`.

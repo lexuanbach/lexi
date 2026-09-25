@@ -1,0 +1,320 @@
+{
+  "r2q1_safe_probe": {
+    "n_seeds": 15,
+    "strict": {
+      "coverage_pct": 85.71,
+      "coverage_ci": [
+        85.71,
+        85.71
+      ],
+      "model_lat_err_ms": 1.386,
+      "err_ci": [
+        1.364,
+        1.407
+      ],
+      "slo": 1.458,
+      "slo_ci": [
+        1.308,
+        1.6
+      ],
+      "pii": 0.0543
+    },
+    "safeprobe": {
+      "coverage_pct": 100.0,
+      "coverage_ci": [
+        100.0,
+        100.0
+      ],
+      "model_lat_err_ms": 1.382,
+      "err_ci": [
+        1.36,
+        1.403
+      ],
+      "slo": 1.3,
+      "slo_ci": [
+        1.142,
+        1.467
+      ],
+      "pii": 0.054
+    },
+    "sig_slo_safe_minus_strict": {
+      "p": 0.0,
+      "median_diff": -0.125
+    },
+    "note": "LCB-gated probe explores only SLO-feasible, PII-nonworsening candidates; coverage = %% of nodes visited >= 2%% of horizon; SLO must not worsen"
+  },
+  "r2q2_nonstationarity": {
+    "n_seeds": 15,
+    "rows": [
+      {
+        "drift": 0.0,
+        "static_slo": 1.467,
+        "static_slo_ci": [
+          1.308,
+          1.625
+        ],
+        "online_slo": 1.458,
+        "online_slo_ci": [
+          1.308,
+          1.6
+        ],
+        "static_carbon": 0.983,
+        "online_carbon": 0.983
+      },
+      {
+        "drift": 0.3,
+        "static_slo": 16.883,
+        "static_slo_ci": [
+          16.208,
+          17.733
+        ],
+        "online_slo": 16.242,
+        "online_slo_ci": [
+          15.825,
+          16.684
+        ],
+        "static_carbon": 1.029,
+        "online_carbon": 1.0
+      },
+      {
+        "drift": 0.6,
+        "static_slo": 37.192,
+        "static_slo_ci": [
+          36.608,
+          37.767
+        ],
+        "online_slo": 28.917,
+        "online_slo_ci": [
+          28.442,
+          29.4
+        ],
+        "static_carbon": 1.121,
+        "online_carbon": 1.04
+      }
+    ],
+    "sig_online_vs_static_at_max_drift": {
+      "drift": 0.6,
+      "p": 0.0,
+      "median_diff": -8.5
+    },
+    "features": "per-node ridge on [1, demand, load, same_region] (latency) and [1, sin t, cos t] (carbon); ridge lambda=1e-2; update EVERY request",
+    "note": "static model frozen after warmup; online model keeps updating -> tracks RTT/carbon drift"
+  },
+  "r2q4_candidate_gen": {
+    "n_seeds": 15,
+    "generators": {
+      "curated": {
+        "slo": 1.458,
+        "slo_ci": [
+          1.308,
+          1.6
+        ],
+        "pii": 0.0543,
+        "carbon": 0.983
+      },
+      "planner": {
+        "slo": 1.9,
+        "slo_ci": [
+          1.617,
+          2.225
+        ],
+        "pii": 0.0411,
+        "carbon": 0.957
+      },
+      "random": {
+        "slo": 45.633,
+        "slo_ci": [
+          40.483,
+          49.55
+        ],
+        "pii": 1.4105,
+        "carbon": 1.092
+      }
+    },
+    "planner_recovers_pct_of_curated": 99.0,
+    "sig_planner_vs_random_slo": {
+      "p": 0.0,
+      "median_diff": -46.5
+    },
+    "note": "planner = per-objective greedy beam (deployable, no enumeration); recovery = share of the curated->random SLO gap the planner closes"
+  },
+  "r2q7_quantile": {
+    "n_seeds": 15,
+    "n_steps": 24000,
+    "decision_agreement": 1.0,
+    "strict": {
+      "slo": 1.4583,
+      "privacy": 0.0543,
+      "carbon": 0.9826,
+      "cost": 3.2087
+    },
+    "quantile": {
+      "slo": 1.4583,
+      "privacy": 0.0543,
+      "carbon": 0.9826,
+      "cost": 3.2087
+    },
+    "note": "quantile transform is monotone per objective => Prop. scale-invariance makes the quantile-lex surrogate replicate strict-order Lexi at zero slack"
+  },
+  "r2q5_contention_lowpri": {
+    "n_seeds": 15,
+    "rows": [
+      {
+        "contention": 0.0,
+        "additive": {
+          "resid": 1.386,
+          "slo": 1.458,
+          "pii": 0.054,
+          "carbon": 0.983,
+          "cost": 3.209
+        },
+        "aware": {
+          "resid": 1.386,
+          "slo": 1.458,
+          "pii": 0.054,
+          "carbon": 0.983,
+          "cost": 3.209
+        }
+      },
+      {
+        "contention": 0.2,
+        "additive": {
+          "resid": 3.184,
+          "slo": 9.5,
+          "pii": 0.648,
+          "carbon": 1.154,
+          "cost": 3.028
+        },
+        "aware": {
+          "resid": 7.704,
+          "slo": 7.942,
+          "pii": 1.464,
+          "carbon": 1.362,
+          "cost": 3.118
+        }
+      },
+      {
+        "contention": 0.4,
+        "additive": {
+          "resid": 3.063,
+          "slo": 21.567,
+          "pii": 1.073,
+          "carbon": 1.203,
+          "cost": 3.037
+        },
+        "aware": {
+          "resid": 16.574,
+          "slo": 19.133,
+          "pii": 1.904,
+          "carbon": 1.305,
+          "cost": 2.919
+        }
+      },
+      {
+        "contention": 0.6,
+        "additive": {
+          "resid": 2.229,
+          "slo": 40.967,
+          "pii": 1.491,
+          "carbon": 1.247,
+          "cost": 2.96
+        },
+        "aware": {
+          "resid": 25.14,
+          "slo": 40.158,
+          "pii": 1.812,
+          "carbon": 1.312,
+          "cost": 2.955
+        }
+      }
+    ],
+    "model": "M/G/1-flavoured per-stage correction c*q_n*(coloc-1) on the critical path; single c fit online by ridge on the residual latency",
+    "note": "resid = mean |realised - model critical-path latency| (ms) on executed placements; PII/carbon/cost show the lower-priority impact of contention"
+  },
+  "r2q6_delta_slack": {
+    "n_seeds": 15,
+    "grid": [
+      {
+        "delta_ms": 0.0,
+        "eta_priv": 0.0,
+        "slo": 1.45,
+        "pii": 0.0543
+      },
+      {
+        "delta_ms": 0.0,
+        "eta_priv": 0.25,
+        "slo": 1.45,
+        "pii": 0.0543
+      },
+      {
+        "delta_ms": 0.0,
+        "eta_priv": 0.5,
+        "slo": 1.625,
+        "pii": 0.0606
+      },
+      {
+        "delta_ms": 4.0,
+        "eta_priv": 0.0,
+        "slo": 0.158,
+        "pii": 0.1135
+      },
+      {
+        "delta_ms": 4.0,
+        "eta_priv": 0.25,
+        "slo": 0.158,
+        "pii": 0.1135
+      },
+      {
+        "delta_ms": 4.0,
+        "eta_priv": 0.5,
+        "slo": 0.158,
+        "pii": 0.121
+      },
+      {
+        "delta_ms": 8.0,
+        "eta_priv": 0.0,
+        "slo": 0.008,
+        "pii": 0.278
+      },
+      {
+        "delta_ms": 8.0,
+        "eta_priv": 0.25,
+        "slo": 0.008,
+        "pii": 0.278
+      },
+      {
+        "delta_ms": 8.0,
+        "eta_priv": 0.5,
+        "slo": 0.008,
+        "pii": 0.2878
+      }
+    ],
+    "scale_invariance": [
+      {
+        "eta_priv": 0.0,
+        "priv_scale": 1.0,
+        "pii": 0.1135
+      },
+      {
+        "eta_priv": 0.0,
+        "priv_scale": 10.0,
+        "pii": 0.1135
+      },
+      {
+        "eta_priv": 0.5,
+        "priv_scale": 1.0,
+        "pii": 0.121
+      },
+      {
+        "eta_priv": 0.5,
+        "priv_scale": 10.0,
+        "pii": 0.1135
+      }
+    ],
+    "note": "delta on the top-priority SLO (ms), eta_priv a band on the 2nd priority; strict privacy (eta_priv=0) is scale-invariant, nonzero slack is not"
+  },
+  "_meta": {
+    "n_seeds": 15,
+    "note": "deployment experiments DX1, DX2, DX4, DX5, DX6 and DX7 (result keys r2q1 to r2q7), 15 seeds, 95% bootstrap CIs. The experiments ran in separate pieces (results/_dx*.json), each short enough for the per-command wall-clock limit of the execution environment, and the pieces were merged into this file"
+  }
+}

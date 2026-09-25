@@ -1,0 +1,38 @@
+{
+  "n_seeds": 15,
+  "generators": {
+    "curated": {
+      "slo": 1.458,
+      "slo_ci": [
+        1.308,
+        1.6
+      ],
+      "pii": 0.0543,
+      "carbon": 0.983
+    },
+    "planner": {
+      "slo": 1.9,
+      "slo_ci": [
+        1.617,
+        2.225
+      ],
+      "pii": 0.0411,
+      "carbon": 0.957
+    },
+    "random": {
+      "slo": 45.633,
+      "slo_ci": [
+        40.483,
+        49.55
+      ],
+      "pii": 1.4105,
+      "carbon": 1.092
+    }
+  },
+  "planner_recovers_pct_of_curated": 99.0,
+  "sig_planner_vs_random_slo": {
+    "p": 0.0,
+    "median_diff": -46.5
+  },
+  "note": "planner = per-objective greedy beam (deployable, no enumeration); recovery = share of the curated->random SLO gap the planner closes"
+}

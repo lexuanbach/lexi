@@ -1,0 +1,18 @@
+{
+  "n_seeds": 15,
+  "n_steps": 24000,
+  "decision_agreement": 1.0,
+  "strict": {
+    "slo": 1.4583,
+    "privacy": 0.0543,
+    "carbon": 0.9826,
+    "cost": 3.2087
+  },
+  "quantile": {
+    "slo": 1.4583,
+    "privacy": 0.0543,
+    "carbon": 0.9826,
+    "cost": 3.2087
+  },
+  "note": "quantile transform is monotone per objective => Prop. scale-invariance makes the quantile-lex surrogate replicate strict-order Lexi at zero slack"
+}
