@@ -119,7 +119,7 @@ num("CR Sect. 2", "hinge saturates at 320 ms", 320, CONT_SIM.slo + SIM.SLO_MARGI
 # Fig. 1 and Sect. 3, Table 1
 same("CR Fig. 1", "survivor counts 40, 11, 4, 1",
      [40, 11, 4, 1], [D["band_trace"][0]["n_before"]] + [b["n_after"] for b in D["band_trace"]])
-# Corrected in this revision: the model is fitted on steps 0-903 (904 updates).
+# The model is fitted on steps 0-903 (904 updates).
 num("CR Sect. 3, EXT Sect. 4.2", "model fitted on steps 0-903, decision at step 904", 904, D["step"], 0)
 same("CR Sect. 3", "request signals: origin 2, load 0.765, t 904",
      [2, 0.765, 904], [D["request"]["origin"], D["request"]["load"], D["request"]["t"]])
@@ -331,7 +331,7 @@ num("CR Sect. 6.3", "Lexi picks the expected-objective optimum on 99.7% of decis
     OA["curated"]["lexi_pct"], 0.05)
 infos.append(("CR Sect. 6.3", "decision time under 0.1 ms at 40 candidates (machine-dependent)",
               [p["ms_median"] for p in C["scalability"]["points"] if p["n_cand"] in (32, 48)]))
-# Corrected in this revision: Sect. 5 now reports Lex-LP, the rule without Lexi's stability
+# Sect. 5 reports Lex-LP, the rule without Lexi's stability
 # hold, and its agreement with Lexi on all 24,000 main-run decisions.
 num("CR Sect. 5", "Lex-LP matches Lexi on all decisions (agreement 1.00)", 1.0,
     C["lexlp_agreement"]["agreement_pure"], 0)
@@ -340,7 +340,7 @@ num("CR Sect. 5, Def. 2", "stability hold changes 0 of the 24,000 main-run stric
     HY["main"]["changed_steps"], 0)
 
 # ---------------------------------------------------------------- extended version (EXT)
-# Corrected in this revision: the intensity phase is set per node.
+# The intensity phase is set per node.
 true("EXT Sect. 8.1", "per-node phase (nodes of one region have different phases)",
      any(len({n.carbon_phase for n in CONT_SIM.nodes if n.region == r}) > 1 for r in (0, 1, 2)))
 num("EXT Sect. 3.2", "divisors 2 stages, 2.5 g, 5 cost units", 1,
@@ -354,7 +354,7 @@ num("EXT Sect. 3.3", "#21 was the previous placement", 21, WD["incumbent"], 0)
 num("EXT Sect. 4.1", "time-of-day fraction 0.767", 0.767, D["request"]["time_of_day_frac"], 0.0005)
 same("EXT Sect. 4.3", "admitted candidates 24 and 33 (true 268.2 and 264.8 ms)", [268.2, 264.8],
      [PANEL[24]["true_lat_ms"], PANEL[33]["true_lat_ms"]])
-# Corrected in this revision: the four values are now the predicted carbon.
+# The four values are the predicted carbon.
 nums("EXT Sect. 4.3", "predicted carbon of {2, 19, 20, 21}: 1.683, 1.190, 0.968, 0.784 g",
      [1.683, 1.190, 0.968, 0.784], [WD["level1_pred_carbon_g"][str(i)] for i in (2, 19, 20, 21)], 0.0005)
 true("EXT Sect. 4.3", "#21 lowest predicted carbon of the four",
@@ -431,7 +431,7 @@ q2 = {r["drift"]: r for r in DEP["r2q2_nonstationarity"]["rows"]}
 q4 = DEP["r2q4_candidate_gen"]
 q5 = DEP["r2q5_contention_lowpri"]["rows"][-1]
 num("EXT Table 9", "M/G/1 term recovers 57% at light contention", 57, 100 * RX1[0.1]["recovery_frac"], 0.5)
-# Corrected in this revision: 15 seeds unless marked, dagger rows use 2 to 5 seeds.
+# 15 seeds unless marked, dagger rows use 2 to 5 seeds.
 same("EXT Table 9", "15-seed rows (RX1, RX2, RX4, RX6, RX7, DX1-DX7)", [15] * 12,
      [ROB[k]["n_seeds"] for k in ("rx1_contention", "rx2_doubly_robust", "rx4_hinge_margin",
                                  "rx6_priority_orders", "rx7_compliance")]

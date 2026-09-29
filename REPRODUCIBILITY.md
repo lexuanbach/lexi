@@ -106,7 +106,7 @@ machine-dependent. `scripts/check-claims.py` prints them as INFO, and
 2. **Stability hold (disclosed in the current camera-ready).** `controller.thresholded_lex_select`
    keeps the previous placement when it survives the three bands and applies the cost
    tie-break only otherwise. Def. 2 of the camera-ready states the cost tie-break, and
-   Sect. 5 now reports that Lex-LP, the same rule without this hold, matches Lexi on all
+   Sect. 5 reports that Lex-LP, the same rule without this hold, matches Lexi on all
    24,000 main-run decisions (`core_results.json`, `lexlp_agreement` and
    `e1_satisfaction.lexlp_vs_strict_max_gap`). For the strict rule the hold changes 0 of
    24,000 decisions in the main run, 0 of 12,800 on the random menu and 24 of 24,000 in the
@@ -119,10 +119,8 @@ machine-dependent. `scripts/check-claims.py` prints them as INFO, and
    `CausalContinuum` with `eta=(0.04, 0, 0.08)` reproduces 5.1167% and 0.03 exactly. No
    number in either paper uses this file.
 4. **`robustness_experiments.py` run as a script.** Its `main()` (called by
-   `lexi/run_robustness.sh`) runs RX1 to RX7 in one pass and completes. An earlier version of
-   its summary print read keys that `rx2_doubly_robust` does not return and stopped with a
-   `KeyError` after writing the JSON. The print is fixed and no computed value changed.
-   The one-pass file still differs from the committed `robustness_results.json`: it runs the
+   `lexi/run_robustness.sh`) runs RX1 to RX7 in one pass and completes.
+   The one-pass file differs from the committed `robustness_results.json`: it runs the
    RX3 sweeps on five seeds where the committed file uses two (weight sweep) and three
    (baseline sweeps), which gives 16.4% of weightings meeting the target against 14.6% in
    the committed file (0% dominate Lexi in both). It also keeps the intervals and paired
@@ -130,16 +128,8 @@ machine-dependent. `scripts/check-claims.py` prints them as INFO, and
    means match the committed ones up to the last rounded digit. RX6 and RX7 are identical.
    The one-pass run took 567 s. `scripts/run-extended.sh` follows `run_incremental.py`
    with the committed seed counts and reproduces the committed file.
-5. **Corrected in the current papers.** Earlier builds of the papers had four small
-   wording errors that the artifact exposed. The current PDFs fix them and
-   `scripts/check-claims.py` checks the corrected values: the model of the worked
-   decision is fitted on steps 0 to 903 (both papers), the extended version's Sect. 4.3
-   now prints the predicted carbon 1.683, 1.190, 0.968 and 0.784 g and calls the
-   objectives of the chosen placement noise-free, Sect. 8.1 states a per-node phase, and
-   the Table 9 caption gives the seed counts (15 unless marked, 2 to 5 for the marked
-   rows).
-6. **Timing claims.** "Under 0.1 ms per decision" and the extended-version slope depend on
+5. **Timing claims.** "Under 0.1 ms per decision" and the extended-version slope depend on
    the CPU. A rerun on the test machine, with other jobs running, measured 0.088 to 0.104 ms
    for 8 to 128 candidates and 0.092 ms at 32 and 48 candidates.
-7. **Real traces.** The carbon and load traces are fixed excerpts. The papers do not claim
+6. **Real traces.** The carbon and load traces are fixed excerpts. The papers do not claim
    anything about other days or regions.

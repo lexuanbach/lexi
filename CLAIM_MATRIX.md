@@ -41,7 +41,7 @@ Constr-WS, `ws_tuned` = WS-tuned, `ws_default` = WS-default.
 | :-- | :-- | :-- |
 | Hinge scale rho = 60 ms, plateau at 320 ms | 60, 260 + 60 | sim `SLO_MARGIN`, `Continuum.slo` |
 | Evaluated rule is strict (eta = 0) | `STRICT_ETA = 0` | `experiments_core.py` |
-| Def. 2 final tie on cost | the evaluated controller applies a stability hold first. It changes 0 of 24,000 main-run decisions, and Sect. 5 now discloses it (row Lex-LP below). **Resolved** | dec `hysteresis_effect.main`, core `lexlp_agreement` |
+| Def. 2 final tie on cost | the evaluated controller applies a stability hold first. It changes 0 of 24,000 main-run decisions, and Sect. 5 discloses it (row Lex-LP below). | dec `hysteresis_effect.main`, core `lexlp_agreement` |
 | Fig. 1 counts 40, 11, 4, 1, 1 | 40, 11, 4, 1 (cost level returns 1) | ext `D_worked_example.band_trace` |
 
 ### Sect. 3 and Table 1 (worked decision, seed 0, step 904)
@@ -50,7 +50,7 @@ Constr-WS, `ws_tuned` = WS-tuned, `ws_default` = WS-default.
 | :-- | :-- | :-- |
 | Origin region 2, load 0.765, t = 904 | 2, 0.765, 904 | ext `D_worked_example.request` |
 | 40 candidates, 39 never executed | 40 | ext `D_worked_example.n_cand` |
-| Per-node models fitted on steps 0 to 903 (corrected from "1 to 903") | decision at step 904 after 904 updates. **Resolved** | ext `D_worked_example.step`, `extended_experiments.worked_example` |
+| Per-node models fitted on steps 0 to 903 | decision at step 904 after 904 updates. | ext `D_worked_example.step`, `extended_experiments.worked_example` |
 | Level 0: 40 to 11 | 11 survivors | ext `band_trace[0]` |
 | 9 of the 11 truly meet the 260 ms SLO, #24 and one other admitted by error | 9, admitted #24 and #33 | ext `D_worked_example.panel` (`true_lat_ms`) |
 | Level 1: 11 to 4, {2, 19, 20, 21} | same | ext `band_trace[1]` |
@@ -77,7 +77,7 @@ Constr-WS, `ws_tuned` = WS-tuned, `ws_default` = WS-default.
 | WS-default (0.30, 0.12, 0.30, 0.28), WS-tuned (0.85, 0.10, 0.00, 0.05) | same | `baselines.DEFAULT_WS_W`, `TUNED_WS_W` |
 | WS-tuned better than the best of the 84-point sweep | 3.28% vs 6.67% SLO | core `e3_scale_invariance` (factor 1), `e2_weight_sweep.best_ws` |
 | Constr-WS minimises an equal-weight sum of the rest | (0.34, 0.33, 0.33) | `baselines.ConstrainedWeightedSum.W_REST` |
-| Lex-LP, the same rule without Lexi's hold on a surviving previous placement, matches Lexi on all 24,000 decisions (added in the current PDF) | agreement 1.00 over 24,000 decisions, per-metric gap 0. **Resolved** | core `lexlp_agreement`, `e1_satisfaction.lexlp_vs_strict_max_gap`, dec `hysteresis_effect.main` |
+| Lex-LP, the same rule without Lexi's hold on a surviving previous placement, matches Lexi on all 24,000 decisions | agreement 1.00 over 24,000 decisions, per-metric gap 0. | core `lexlp_agreement`, `e1_satisfaction.lexlp_vs_strict_max_gap`, dec `hysteresis_effect.main` |
 
 ### Table 3 (15 seeds)
 
@@ -153,10 +153,10 @@ Tables render with `python3 make_tables.py extended`.
 | Sect. 3.3, 4.5 | tuned sum 0.030 vs 0.111, 0.021 vs 0.030 under 10x | same as CR Sect. 3 | dec `worked_decision` |
 | Sect. 4.1 | time-of-day fraction 0.767 | 0.767 | ext `D_worked_example.request` |
 | Sect. 4.3 | #24 and #33 admitted, true 268.2 and 264.8 ms | same | ext `panel` |
-| Sect. 4.2 | model fitted on steps 0 to 903 (corrected from "1 to 903") | decision at step 904. **Resolved** | ext `D_worked_example.step` |
-| Sect. 4.3 | predicted carbon of {2, 19, 20, 21}: 1.683, 1.190, 0.968, 0.784 g (corrected from the noise-free 1.687, 1.501, 0.969, 0.785) | same. **Resolved** | dec `worked_decision.level1_pred_carbon_g` |
-| Sect. 4.3, 4.5 | #21 noise-free objectives (corrected from "realised"): 235.5 ms, PII 0, 0.785 g, $2.96. #6: 228.8 ms, 0.416 g, $1.08 | same. **Resolved** | ext `panel[].true_raw` |
-| Sect. 8.1 | intensity with a per-node phase (corrected from "per-region") | phases differ within a region, for example 3.8, 3.5, 4.0 in region 2. **Resolved** | sim `build_nodes` (`carbon_phase`) |
+| Sect. 4.2 | model fitted on steps 0 to 903 | decision at step 904. | ext `D_worked_example.step` |
+| Sect. 4.3 | predicted carbon of {2, 19, 20, 21}: 1.683, 1.190, 0.968, 0.784 g | same. | dec `worked_decision.level1_pred_carbon_g` |
+| Sect. 4.3, 4.5 | #21 noise-free objectives: 235.5 ms, PII 0, 0.785 g, $2.96. #6: 228.8 ms, 0.416 g, $1.08 | same. | ext `panel[].true_raw` |
+| Sect. 8.1 | intensity with a per-node phase | phases differ within a region, for example 3.8, 3.5, 4.0 in region 2. | sim `build_nodes` (`carbon_phase`) |
 | Table 1 | all eleven level-0 survivors | all match | ext `D_worked_example` |
 | Table 3 | CR Table 3 rows plus Rank-WS, Norm-WS, Tchebycheff, SO-RL, static-greedy / binpack | all match | core `e1_satisfaction.table`, `e1_inversion` |
 | Sect. 9.2 | Lex-LP byte-identical, agreement 1.00 over 24k decisions | 1.0, 24,000 | core `lexlp_agreement` |
@@ -178,7 +178,7 @@ Tables render with `python3 make_tables.py extended`.
 | Sect. 8.2, 11 | regional carbon means 92.8, 167.5, 182.9 | same | real `provenance` |
 | Table 8 | real-trace rows, all methods | all 41 cells match | real `table`, `inversion` |
 | Sect. 11 | paired p = 0.15, priced scalarisers invert 16 to 17%, constrained 14% | 0.145, 16.3 to 16.8, 14.3 | real `paired_tests`, `inversion` |
-| Table 9 caption, Sect. 12 | 15 seeds unless marked, dagger rows 2 to 5 seeds (corrected from "15 seeds, 95% CIs") | 15 seeds for RX1, RX2, RX4, RX6, RX7 and DX1 to DX7. Scaling 5 seeds, larger sweep 2 and 3 seeds. **Resolved** | rob `n_seeds`, `rx3_expanded_sweeps.n_seeds_sweep`, `n_seeds_baseline`, dep `n_seeds` |
+| Table 9 caption, Sect. 12 | 15 seeds unless marked, dagger rows 2 to 5 seeds | 15 seeds for RX1, RX2, RX4, RX6, RX7 and DX1 to DX7. Scaling 5 seeds, larger sweep 2 and 3 seeds. | rob `n_seeds`, `rx3_expanded_sweeps.n_seeds_sweep`, `n_seeds_baseline`, dep `n_seeds` |
 | Table 9, Sect. 12 | M/G/1 57%, DR decision-safe (<= 0.5%), hinge rho invariant, k = 2 gives delta 3.7 ms and 0.23%, <= 0.75 ms at C = 2000, 220 weightings with 0% dominating, residency 2.7% to 0%, coverage 85.7% to 100% with SLO 1.46% to 1.30%, drift 37.2% vs 28.9%, planner 1.9% and 99%, PII 1.49 at c = 0.6, quantile agreement 100% | all match (timing as INFO) | rob `rx1` to `rx7`, dep `r2q1` to `r2q7` (keys of DX1 to DX7) |
 | Sect. 12 | delta 0 / 4 / 8 ms: SLO 1.45 / 0.16 / 0.008%, PII 0.054 / 0.114 / 0.278, invariance lost only with privacy slack | 1.45, 0.158, 0.008, 0.0543, 0.1135, 0.278 | dep `r2q6_delta_slack` |
 
