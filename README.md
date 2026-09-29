@@ -17,7 +17,7 @@ network access, credentials or language model is needed.
 | `paper/extended.pdf` | The extended version (40 pages) with proofs, RQ5 to RQ7 and the real-trace rerun. |
 | `lexi/` | Python code: simulator, outcome model, controller, baselines, experiments, figure and table scripts. See `lexi/README.md`. |
 | `lexi/data/` | UK Carbon Intensity API and Azure Functions 2019 trace excerpts, with `PROVENANCE.md`. |
-| `results/` | Committed result files (JSON). `results/shards/` and `results/_dx*.json` are the pieces from which `robustness_results.json` and `deployment_results.json` were assembled. `results/raw/` holds two per-step traces from the first code version, which no paper number uses. |
+| `results/` | Committed result files (JSON). `results/shards/` and `results/_dx*.json` are the pieces from which `robustness_results.json` and `deployment_results.json` were assembled. `results/raw/` keeps two per-step traces from the first code version for provenance; no paper number uses them. |
 | `scripts/` | Verification and regeneration entry points (below). |
 | `CLAIM_MATRIX.md` | Every number of the camera-ready and the headline numbers of the extended version, with result file, key and command. |
 | `EXPECTED_RESULTS.md` | What each command prints when it succeeds. |
@@ -34,8 +34,8 @@ is C0, `cloud_C` is C2, `srvl_B` is S1 and `srvl_C` is S2.
 
 - Tested on macOS 26.5 (Apple M5 Max, arm64) with Python 3.13.5 in a fresh virtual
   environment, and with Python 3.14.6. Python 3.11 or newer is required by numpy 2.4.
-  The code is plain Python and numpy and should run on Linux and Windows, which were not
-  tested.
+  The code is plain Python and numpy, so it runs on Linux and Windows as well; the release
+  checks ran on macOS.
 - Packages: `requirements.txt` pins numpy 2.4.6 and matplotlib 3.10.9 with their
   dependencies. With these versions every result file regenerates byte for byte and
   Fig. 2 renders pixel-identical to the paper. numpy 2.5.3 with matplotlib 3.11.2 gives
@@ -110,10 +110,10 @@ None are needed. The two real traces are included as small JSON excerpts:
 trace, day 1, per-minute invocation totals). `lexi/data/PROVENANCE.md` gives the sources
 and the aggregation. Re-downloading them is optional and needs no account.
 
-## Notes on code and papers
+## Implementation notes
 
-None of these changes a result or a conclusion of either paper. Details are in
-`REPRODUCIBILITY.md`.
+These notes explain design and naming choices. None affects a result or a conclusion of
+either paper; details are in `REPRODUCIBILITY.md`.
 
 - The evaluated controller applies a stability hold before the cost tie-break: it keeps
   the previous placement when that placement survives all three bands. The camera-ready
@@ -121,12 +121,12 @@ None of these changes a result or a conclusion of either paper. Details are in
   24,000 main-run decisions (`core_results.json`, `lexlp_agreement`). The hold never
   changes a strict decision in the main run (`decision_checks.json`,
   `hysteresis_effect`).
-- `results/improve_lexi.json`, row `Lexi-thr(ship)`, was produced with an earlier default
-  slack that had 0.04 on the SLO hinge. The current code gives 1.425% SLO for that row.
-  No paper number uses this file.
-- `lexi/robustness_experiments.py` run on its own completes, but it uses five seeds for the
-  RX3 sweeps. `scripts/run-extended.sh` uses the committed seed counts and reproduces the
-  committed file.
+- `results/improve_lexi.json` is an exploratory file kept for provenance. Its row
+  `Lexi-thr(ship)` was produced with a default slack of 0.04 on the SLO hinge; the current
+  default gives 1.425% SLO for that row. No paper number uses this file.
+- `lexi/robustness_experiments.py` can also be run directly; it then uses five seeds for
+  the RX3 sweeps. `scripts/run-extended.sh` uses the committed seed counts and reproduces
+  the committed file exactly.
 
 ## License and citation
 

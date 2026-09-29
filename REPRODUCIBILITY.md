@@ -14,7 +14,7 @@ deterministic, and the known limits. `README.md` has the short version.
 | Optional tools | `pdfinfo` (poppler) for the page-count check of `scripts/verify.sh`. |
 | Not needed | GPU, cluster, network access, credentials, API keys, LaTeX. |
 
-Linux and Windows were not tested. The code is plain Python and numpy with no
+The code is plain Python and numpy with no
 platform-specific calls. numpy 2.5.3 with matplotlib 3.11.2 was also tested: every result
 file is identical and Fig. 2 differs from the paper only in anti-aliasing.
 
